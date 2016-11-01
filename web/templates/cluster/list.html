@@ -4,16 +4,16 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading" style="padding-left: 8px;">
-            集群聚合配置列表
+            Cluster Config List
             <div class="pull-right">
                 <a class="btn btn-success btn-xs" href="/group/{{ group.id }}/cluster/creator">
                     <span class="glyphicon glyphicon-plus"></span>
-                    新建
+                    Create
                 </a>
             </div>
         </div>
         <div class="panel-body" style="padding-left: 8px;">
-            当前HostGroup：<span class="green">{{ group.grp_name }}</span>
+            Currnet HostGroup: <span class="green">{{ group.grp_name }}</span>
         </div>
 
         <!-- Table -->
@@ -41,15 +41,15 @@
                     </td>
                     <td>{{ c.creator }}</td>
                     <td>
-                        <a data-toggle="tooltip" href="{{ url_for('cluster_edit_get', cluster_id=c.id) }}" title="修改">
+                        <a data-toggle="tooltip" href="{{ url_for('cluster_edit_get', cluster_id=c.id) }}" title="Edit">
                             <span class="glyphicon glyphicon-edit orange"></span>
                         </a>
                         <span class="cut-line">¦</span>
-                        <a data-toggle="tooltip" href="{{ url_for('cluster_clone_get', cluster_id=c.id) }}" title="克隆">
+                        <a data-toggle="tooltip" href="{{ url_for('cluster_clone_get', cluster_id=c.id) }}" title="Clone">
                             <span class="glyphicon glyphicon-duplicate orange"></span>
                         </a>
                         <span class="cut-line">¦</span>
-                        <a data-toggle="tooltip" href="javascript:delete_cluster_monitor_item('{{ c.id }}');" title="删除">
+                        <a data-toggle="tooltip" href="javascript:delete_cluster_monitor_item('{{ c.id }}');" title="Delete">
                             <span class="glyphicon glyphicon-trash orange"></span>
                         </a>
                     </td>

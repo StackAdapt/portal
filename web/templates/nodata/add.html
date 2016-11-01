@@ -57,15 +57,15 @@
 
                 <div class="form-group">
                     <label for="obj_type">
-                        endpoint选择:
+                        endpoint:
                     </label>
-                    <a target="_blank" href="http://wiki.n.miui.com/pages/viewpage.action?pageId=12785497#Nodata使用手册-注意事项" title="endpoint配置说明">
+                    <a target="_blank" href="http://wiki.n.miui.com/pages/viewpage.action?pageId=12785497#Nodata使用手册-注意事项" title="Endpoint Config Intro">
                         <span class="glyphicon glyphicon-question-sign" style="float:right;"></span>
                     </a>
                     <select class="form-control" id="obj_type" style="vertical-align:top" onchange="on_endpoint_changed()">
-                        <option value="group" {% if data.nodata.obj_type == 'group' %}selected{% endif %}>机器分组</option>
-                        <option value="host"  {% if data.nodata.obj_type == 'host'  %}selected{% endif %}>机器名</option>
-                        <option value="other" {% if data.nodata.obj_type == 'other' %}selected{% endif %}>其他</option>
+                        <option value="group" {% if data.nodata.obj_type == 'group' %}selected{% endif %}>hostGroup</option>
+                        <option value="host"  {% if data.nodata.obj_type == 'host'  %}selected{% endif %}>hostname</option>
+                        <option value="other" {% if data.nodata.obj_type == 'other' %}selected{% endif %}>other</option>
                     </select>
                     <textarea class="form-control" rows="3" id="obj" placeholder="cop.xiaomi_owt.inf_pdl.falcon" style="margin-top: 5px;">{{ data.nodata.obj }}</textarea>
                 </div> 
@@ -89,12 +89,12 @@
                 </div> 
 
                 <div class="form-group">
-                    <label for="step">周期(秒):</label>
+                    <label for="step">interval(second):</label>
                     <input type="text" placeholder="60" value="{{ data.nodata.step }}" class="form-control" id="step">            
                 </div>
 
                 <div style="border-left: 10px solid green; padding-left: 5px;margin-bottom: 10px;">
-                    <span>数据上报中断时, 补发如下值:</span>
+                    <span>When there's no data, resend below:</span>
                 </div>
                 <div class="form-group">
                     <input type="text" placeholder="-1" value="{{ data.nodata.mock}}" class="form-control" id="mock">
@@ -117,7 +117,7 @@
 
         <a class="orange" target="_blank" href="http://book.open-falcon.com/zh/usage/nodata.html">
             <span class="glyphicon glyphicon-question-sign"></span>
-            Nodata监控用户手册
+            Nodata monitor manual
         </a>
     </div>    
 

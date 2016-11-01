@@ -63,7 +63,7 @@ function create_group() {
 }
 
 function delete_group(group_id) {
-    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+    my_confirm('sure to delete?', ['Confirm', 'Cancel'], function () {
         $.getJSON('/group/delete/' + group_id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -104,7 +104,7 @@ function bind_plugin(group_id) {
 }
 
 function unbind_plugin(plugin_id) {
-    my_confirm('确定要解除绑定？', ['确定', '取消'], function () {
+    my_confirm('sure to unbind?', ['Confirm', 'Cancel'], function () {
         $.getJSON('/plugin/delete/' + plugin_id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -203,7 +203,7 @@ function no_maintain() {
 function batch_add_host() {
     var hosts = $.trim($("#hosts").val());
     if (hosts.length == 0) {
-        err_message_quietly('请填写机器列表，一行一个');
+        err_message_quietly('input machine list, one per line');
         return false;
     }
 
@@ -231,7 +231,7 @@ function query_expression() {
 }
 
 function delete_expression(id) {
-    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+    my_confirm('sure to delete', ['Confirm', 'Cancel'], function () {
         $.getJSON('/expression/delete/' + id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -337,7 +337,7 @@ function query_template() {
 }
 
 function delete_template(id) {
-    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+    my_confirm('sure to delete', ['Confirm', 'Cancel'], function () {
         $.getJSON('/template/delete/' + id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -400,7 +400,7 @@ function make_select2_for_template(selector) {
 
 function make_select2_for_metric(selector) {
     $(selector).select2({
-        placeholder: "监控项名，如:df.bytes.free.percent",
+        placeholder: "Metric,e.g. df.bytes.free.percent",
         allowClear: true,
         quietMillis: 100,
         minimumInputLength: 2,
@@ -531,7 +531,7 @@ function fill_fields(sid) {
 }
 
 function delete_strategy(id) {
-    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+    my_confirm('sure to delete', ['Confirm', 'Cancel'], function () {
         $.getJSON('/strategy/delete/' + id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -543,7 +543,7 @@ function delete_strategy(id) {
 }
 
 function tpl_unbind_group(tpl_id, grp_id) {
-    my_confirm('确定要解除绑定关系？', ['确定', '取消'], function () {
+    my_confirm('sure to unbind?', ['Confirm', 'Cancel'], function () {
         $.getJSON('/template/unbind/group', {'tpl_id': tpl_id, 'grp_id': grp_id}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -574,7 +574,7 @@ function bind_template(grp_id) {
 }
 
 function node_unbind_tpl(grp_name, tpl_id) {
-    my_confirm('确定要解除绑定关系？', ['确定', '取消'], function () {
+    my_confirm('sure to unbind?', ['Confirm', 'Cancel'], function () {
         $.getJSON('/template/unbind/node', {'tpl_id': tpl_id, 'grp_name': grp_name}, function (json) {
             handle_quietly(json, function () {
                 location.reload();
@@ -625,7 +625,7 @@ function update_cluster_monitor_metric(cluster_id, grp_id) {
 }
 
 function delete_cluster_monitor_item(cluster_id) {
-    my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+    my_confirm('sure to delete?', ['Confirm', 'Cancel'], function () {
         $.post('/cluster/delete/' + cluster_id, {}, function (json) {
             handle_quietly(json, function () {
                 location.reload();

@@ -39,22 +39,22 @@
                     <a target="_blank" href="{{ data.uic_address }}/about/{{ v.create_user }}">{{ v.create_user }}</a>
                 </td>
                 <td>
-                    <a data-toggle="tooltip" data-placement="top" title="克隆一份该模板" href="javascript:fork_template('{{ v.id }}');" style="text-decoration: none;">
+                    <a data-toggle="tooltip" data-placement="top" title="Clone this template" href="javascript:fork_template('{{ v.id }}');" style="text-decoration: none;">
                         <span class="glyphicon glyphicon-duplicate orange"></span>
                     </a>
                     {% if v.writable(g.user_name) %}
                         <span class="cut-line">¦</span>
-                        <a data-toggle="tooltip" data-placement="top" title="查看绑定了哪些HostGroup" href="{{ url_for('template_binds_get', tpl_id=v.id) }}"
+                        <a data-toggle="tooltip" data-placement="top" title="check HostGroup binding" href="{{ url_for('template_binds_get', tpl_id=v.id) }}"
                            style="text-decoration: none;">
                             <span class="glyphicon glyphicon-list-alt orange"></span>
                         </a>
                         <span class="cut-line">¦</span>
-                        <a data-toggle="tooltip" data-placement="top" title="修改" href="{{ url_for('template_update_get', tpl_id=v.id) }}"
+                        <a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ url_for('template_update_get', tpl_id=v.id) }}"
                            style="text-decoration: none;">
                             <span class="glyphicon glyphicon-edit orange"></span>
                         </a>
                         <span class="cut-line">¦</span>
-                        <a data-toggle="tooltip" data-placement="top" title="删除" href="javascript:delete_template('{{ v.id }}');"
+                        <a data-toggle="tooltip" data-placement="top" title="Delete" href="javascript:delete_template('{{ v.id }}');"
                            style="text-decoration: none;">
                             <span class="glyphicon glyphicon-trash orange"></span>
                         </a>

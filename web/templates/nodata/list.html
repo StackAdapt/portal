@@ -7,7 +7,7 @@
             window.location.href = '/nodatas?q=' + query + '&mine=' + mine;
         }
         function delete_nodata(id) {
-            my_confirm('确定要删除？？？', ['确定', '取消'], function () {
+            my_confirm('sure to delete?', ['Confirm', 'Cancel'], function () {
                 $.getJSON('/nodata/delete/' + id, {}, function (json) {
                     handle_quietly(json, function () {
                         location.reload();
@@ -42,7 +42,7 @@
             <hr/>
             <div>{{ v.name }}; {{ v.obj_type }} [{{ v.obj }}]/{{ v.metric }}/{{ v.tags }};&nbsptype={{ v.dstype }},step={{ v.step }}</div>
             <div class="mt10 gray">
-                <span class="gray">默认值: {{ v.mock }}</span> 
+                <span class="gray">Default: {{ v.mock }}</span> 
                 {% if v.writable(g.user_name) %}
                     <div class="pull-right">
                         <a href="{{ url_for('nodata_add_get', id=v.id) }}" class="btn btn-default"
@@ -56,7 +56,7 @@
                 {% endif %}
             </div>
             <div class="mt10 gray">
-                <p> 创建人: {{ v.creator }}, 最后更改时间: {{ v.t_modify }}</p>
+                <p> Creator: {{ v.creator }}, Last modified time: {{ v.t_modify }}</p>
             </div>
         {% else %}
             <hr/>

@@ -8,7 +8,7 @@
     <input type="hidden" id="tpl_id" value="{{ data.tpl.id }}">
 
     <div class="panel panel-default">
-        <div class="panel-heading">模板基本信息</div>
+        <div class="panel-heading">Template Info</div>
         <div class="panel-body">
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading">该模板中的策略列表</div>
+        <div class="panel-heading">Strategy list:</div>
         <div class="panel-body">
             <div class="pull-right">
                 <a class="btn btn-default" href="javascript:goto_strategy_add_div();">
@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div style="line-height: 35px;">
-                max: 最大报警次数 P：报警级别（&lt;3: 既发短信也发邮件 &gt;=3: 只发邮件） run：生效时间，不指定就是全天生效
+                max: Max notice  P: priority(&lt;3: send sms and email &gt;=3: only email) run: operation time(blank would be all day)
             </div>
         </div>
         <table class="table table-hover table-bordered table-striped" style="margin-bottom: 0px;">
@@ -95,26 +95,26 @@
 
     <a name="add"></a>
     <div class="panel panel-success" id="add_div" style="display: none;">
-        <div class="panel-heading">策略添加/修改</div>
+        <div class="panel-heading">Strategy Add/Edit</div>
         <div class="panel-body">
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
                     metric:
                 </div>
                 <div class="form-group">
-                    <input type="text" style="width: 300px;" class="form-control" id="metric" data-toggle="tooltip" data-placement="top" title="监控项名，如：df.bytes.free.percent">
+                    <input type="text" style="width: 300px;" class="form-control" id="metric" data-toggle="tooltip" data-placement="top" title="Metric name, e.g. df.bytes.free.percent">
                 </div>
                 <div class="form-group">
-                    tags: <input type="text" class="form-control" id="tags" data-toggle="tooltip" data-placement="top" title="维度tag，如：fstype=ext4,mount=/mnt">
-                    Max: <input class="form-control" id="max_step" style="width: 100px;" value="3" data-toggle="tooltip" data-placement="top" title="持续故障情况下，连续报警次数">
-                    P: <input class="form-control" id="priority" style="width: 60px;" value="0" data-toggle="tooltip" data-placement="top" title="故障等级，填写1~5的数字">
-                    note: <input class="form-control" id="note" data-toggle="tooltip" data-placement="top" title="报警描述，如：mnt分区block使用率超过80%">
+                    tags: <input type="text" class="form-control" id="tags" data-toggle="tooltip" data-placement="top" title="tag, e.g. fstype=ext4,mount=/mnt">
+                    Max: <input class="form-control" id="max_step" style="width: 100px;" value="3" data-toggle="tooltip" data-placement="top" title="continuously alarm, times of notices">
+                    P: <input class="form-control" id="priority" style="width: 60px;" value="0" data-toggle="tooltip" data-placement="top" title="Priority, 1-5">
+                    note: <input class="form-control" id="note" data-toggle="tooltip" data-placement="top" title="Comments">
                 </div>
             </div>
 
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
-                    if <input type="text" value="all(#3)" class="form-control" id="func" style="width: 100px;" data-toggle="tooltip" data-placement="top" title="判断方法，如：all(#3)">
+                    if <input type="text" value="all(#3)" class="form-control" id="func" style="width: 100px;" data-toggle="tooltip" data-placement="top" title="judge function, e.g. all(#3)">
                     <select class="form-control" id="op">
                         <option value="==">==</option>
                         <option value="!=">!=</option>
@@ -123,16 +123,16 @@
                         <option value=">">&gt;</option>
                         <option value=">=">&gt;=</option>
                     </select>
-                    <input type="text" value="0" class="form-control" id="right_value" style="width: 100px;"  data-toggle="tooltip" data-placement="top" title="报警阈值">
+                    <input type="text" value="0" class="form-control" id="right_value" style="width: 100px;"  data-toggle="tooltip" data-placement="top" title="alarm threshold">
                     : alarm(); callback();
                 </div>
             </div>
 
             <div class="form-inline mt10" role="form">
                 <div class="form-group">
-                    run begin: <input type="text" class="form-control" id="run_begin" data-toggle="tooltip" data-placement="top" title="生效开始时间，如：07:30">
-                    run end: <input type="text" class="form-control" id="run_end" data-toggle="tooltip" data-placement="top" title="生效结束时间，如：23:30">
-                    (生效时间，不指定就是全天生效)
+                    run begin: <input type="text" class="form-control" id="run_begin" data-toggle="tooltip" data-placement="top" title="start time: 07:30">
+                    run end: <input type="text" class="form-control" id="run_end" data-toggle="tooltip" data-placement="top" title="end time: 23:30">
+                    (operation time, leave blank to do all day)
                 </div>
             </div>
 
@@ -146,39 +146,39 @@
 
 
     <div class="panel panel-warning">
-        <div class="panel-heading">模板报警配置，对模板中的所有策略生效</div>
+        <div class="panel-heading">template alarm config, effect to all the strategies</div>
         <div class="panel-body">
 
             <div class="panel panel-default">
-                <div class="panel-heading">def alarm(): #配置了UIC组才会发报警</div>
+                <div class="panel-heading">def alarm(): #config UIC to trigger alarm</div>
                 <div class="panel-body">
-                    报警接收组（在UIC中管理报警组，<a target="_blank" href="{{ data.uic }}/team/all">快捷入口</a>）：
+                    alarm receving group(manage in UIC,<a target="_blank" href="{{ data.uic }}/team/all">Transporter</a>):
                     <input class="form-control" id="uic" value="{{ data.tpl.action.uic }}">
                 </div>
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">def callback(): #高级用法，配置了callback地址才会触发回调</div>
+                <div class="panel-heading">def callback(): #triggered by config callback</div>
                 <div class="panel-body">
-                    callback地址（只支持http get方式回调）：
+                    callback address(only support http GET):
                     <input class="form-control" id="callback_url" value="{{ data.tpl.action.url }}">
 
                     <div class="mt10">
                         <label class="checkbox-inline">
                             <input type="checkbox" id="before_callback_sms"
-                                   {% if data.tpl.action.before_callback_sms == 1 %}checked="checked"{% endif %}> 回调之前发提醒短信
+                                   {% if data.tpl.action.before_callback_sms == 1 %}checked="checked"{% endif %}> send sms before callback
                         </label>
                         <label class="checkbox-inline">
                             <input type="checkbox" id="before_callback_mail"
-                                   {% if data.tpl.action.before_callback_mail == 1 %}checked="checked"{% endif %}> 回调之前发提醒邮件
+                                   {% if data.tpl.action.before_callback_mail == 1 %}checked="checked"{% endif %}> send email before callback
                         </label>
                         <label class="checkbox-inline">
                             <input type="checkbox" id="after_callback_sms"
-                                   {% if data.tpl.action.after_callback_sms == 1 %}checked="checked"{% endif %}> 回调之后发结果短信
+                                   {% if data.tpl.action.after_callback_sms == 1 %}checked="checked"{% endif %}> send sms after callback
                         </label>
                         <label class="checkbox-inline">
                             <input type="checkbox" id="after_callback_mail"
-                                   {% if data.tpl.action.after_callback_mail == 1 %}checked="checked"{% endif %}> 回调之后发结果邮件
+                                   {% if data.tpl.action.after_callback_mail == 1 %}checked="checked"{% endif %}> send email after callback
                         </label>
                     </div>
                 </div>

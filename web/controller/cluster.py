@@ -81,7 +81,7 @@ def cluster_node_post(group_id):
 def cluster_edit_get(cluster_id):
     cluster_id = int(cluster_id)
     cluster = Cluster.get(cluster_id)
-    op = u'修改'
+    op = u'edit'
     return render_template('cluster/edit.html', **locals())
 
 
@@ -91,7 +91,7 @@ def cluster_clone_get(cluster_id):
     cluster = Cluster.get(cluster_id)
     # for clone
     cluster_id = 0
-    op = u'克隆'
+    op = u'clone'
     return render_template('cluster/edit.html', **locals())
 
 
